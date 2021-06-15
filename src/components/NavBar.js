@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import logoImg from '../image/logo.svg'
+import siginImg from '../image/sign.svg'
 
 const NavBarStyled = styled.header`
   position: fixed;
@@ -23,8 +24,8 @@ const Logo = styled.div`
 `;
 
 const H1 = styled.h1`
-    font-sise: 24px;
     margin-left: 15px;
+    font-size: 24px;
 `;
 
 const ImgLogo = styled.img`
@@ -35,11 +36,9 @@ const LoginBtn = styled.button`
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 18px;
-
-    :hover {
-      background-color: green;
-      color: white;
-  }
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
 `;
 
 
@@ -50,6 +49,9 @@ export const NavBar = () => (
       <ImgLogo src={logoImg} alt='logo' />
       <H1>MrDonald's</H1>
     </Logo>
-    <LoginBtn>Войти</LoginBtn>
+    <LoginBtn>
+      <img src={siginImg} alt='войти' />
+      <p>Войти</p>
+    </LoginBtn>
   </NavBarStyled>
 );
