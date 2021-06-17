@@ -9,7 +9,7 @@ const List = styled.ul`
 
 const Item = styled.li`
   position: relative;
-  width: 432px;
+  width: 390px;
   height: 155px;
   background-image: ${({ img }) => `url(${img})`};
   background-position: center;
@@ -54,6 +54,7 @@ export const ListItem = ({ itemList, setOpenItem }) => (
         key={item.id}
         img={item.img}
         onClick={() => setOpenItem(item)}>
+
         <p>{item.name}</p>
         <p>{item.price.toLocaleString('ru-RU',
           { style: 'currency', currency: 'RUB' })}</p>
