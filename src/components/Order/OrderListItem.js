@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import trashImage from '../image/trash.svg';
+
+import { totalPriceItems, currency } from '../functions/secondaryFunction';
+import trashImage from '../../image/trash.svg';
 
 const OrderItemStyled = styled.li`
   display: flex;
   margin: 15px 0;
-
 `;
 
 const TrashButton = styled.button`
@@ -31,11 +32,13 @@ const ItemPrice = styled.span`
   text-align: right;
 `;
 
-export const OrderListItem = () => (
-  <OrderItemStyled>
-    <ItemName>JS Burger</ItemName>
-    <span>2</span>
-    <ItemPrice>750 P</ItemPrice>
+export const OrderListItem = ({ order }) => (
+  <OrderItemStyled >
+    <ItemName>{order.name}</ItemName>
+    <span>{order.count}</span>
+    <ItemPrice >
+      {currency(totalPriceItems(order))}
+    </ItemPrice>
     <TrashButton />
   </OrderItemStyled>
 );

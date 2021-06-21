@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { ButtonCheckout } from './ButtonCheckout';
+import { ButtonCheckout } from '../Style/ButtonCheckout';
 import { OrderListItem } from './OrderListItem';
+import { totalPriceItems, currency } from '../functions/secondaryFunction';
 
 const OrderStyled = styled.section`
 display: flex;
@@ -43,21 +44,33 @@ const TotalPrice = styled.span`
     margin-left: 20px;
 `;
 
-export const Order = () => {
+const EmptyList = styled.p`
+    text-align: center;
+`;
+
+export const Order = ({ orders }) => {
+
+
+  const total = orders.reduce((res, order) =>
+    totalPriceItems(order) + res
+    , 0)
+
   return (
     <OrderStyled>
       <OrderTitle>Ваш закзз</OrderTitle>
       <OrderContent>
-        <OrderList>
-          <OrderListItem />
-          <OrderListItem />
-          <OrderListItem />
-        </OrderList>
+
+        {orders.length ?
+          <OrderList>
+            {orders.map(order => <OrderListItem key={order.id} order={order} />)}
+          </OrderList> :
+          <EmptyList> Список заказов пуст</EmptyList>}
+
       </OrderContent>
       <Total>
         <span>Итого</span>
         <span>5</span>
-        <TotalPrice>850 P</TotalPrice>
+        <TotalPrice>{currency(total)} </TotalPrice>
       </Total>
       <ButtonCheckout>Оформить</ButtonCheckout>
     </OrderStyled>

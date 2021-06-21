@@ -1,5 +1,9 @@
+import { CountItem } from './CountItem';
+import { useCount } from '../Hooks/useCount';
+
+import { totalPriceItems, currency } from '../functions/secondaryFunction';
 import styled from 'styled-components';
-import { ButtonCheckout } from './ButtonCheckout';
+import { ButtonCheckout } from '../Style/ButtonCheckout';
 
 const Overlay = styled.div`
   position: fixed;
@@ -43,15 +47,33 @@ const HeaderContent = styled.div`
   font-size: 30px;
 `;
 
-export const ModalItem = ({ openItem, setOpenItem }) => {
+const TotalPriceItem = styled.div` 
+ display: flex;
+ justify-content: space-between;
 
-  function closeModal(e) {
+`
+
+
+export const ModalItem = ({ orders, setOrders, openItem, setOpenItem }) => {
+
+  const counter = useCount();
+
+  const closeModal = (e) => {
     if (e.target.id === "overlay") {
       setOpenItem(null);
     }
   }
 
-  if (!openItem) return null;
+  const order = {
+    ...openItem,
+    count: counter.count
+  };
+
+
+  const addToOrder = () => {
+    setOrders([...orders, order]);
+    setOpenItem(null);
+  }
 
   return (
     <Overlay
@@ -59,18 +81,22 @@ export const ModalItem = ({ openItem, setOpenItem }) => {
       onClick={closeModal}>
 
       <Modal>
-
         <Banner img={openItem.img} />
-
         <Content>
           <HeaderContent>
             <div>{openItem.name}</div>
             <div>{openItem.price.toLocaleString('ru-RU',
               { style: 'currency', currency: 'RUB' })}</div>
           </HeaderContent>
-          <ButtonCheckout>
+          <CountItem {...counter} />
+          <TotalPriceItem>
+            <span>Цена:</span>
+            <span>{currency(totalPriceItems(order))}</span>
+          </TotalPriceItem>
+          <ButtonCheckout onClick={addToOrder}>
             <p>Добавить</p>
           </ButtonCheckout>
+
         </Content>
 
       </Modal>
