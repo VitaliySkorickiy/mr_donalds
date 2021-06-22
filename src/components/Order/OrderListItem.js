@@ -22,7 +22,6 @@ const TrashButton = styled.button`
 
 const ItemName = styled.span`
   flex-grow: 1;
-
 `;
 
 const ItemPrice = styled.span`
@@ -32,13 +31,39 @@ const ItemPrice = styled.span`
   text-align: right;
 `;
 
-export const OrderListItem = ({ order }) => (
-  <OrderItemStyled >
-    <ItemName>{order.name}</ItemName>
-    <span>{order.count}</span>
-    <ItemPrice >
-      {currency(totalPriceItems(order))}
-    </ItemPrice>
-    <TrashButton />
-  </OrderItemStyled>
-);
+const ToppingsItem = styled.div`
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 16px;
+  color: #9A9A9A;
+  margin-top:-13px;
+  max-width: 170px;
+`;
+
+export const OrderListItem = ({ order }) => {
+
+  const toppingCheck = order.topping
+    .filter(item => item.checked)
+    .map(name => name.name)
+    .join(', ');
+
+
+  return (
+    <>
+      <OrderItemStyled >
+        <ItemName>{order.name}</ItemName>
+
+        <span>{order.count}</span>
+        <ItemPrice >
+          {currency(totalPriceItems(order))}
+        </ItemPrice>
+        <TrashButton />
+
+      </OrderItemStyled>
+      <ToppingsItem >
+        {toppingCheck}
+      </ToppingsItem>
+    </>
+
+  )
+};

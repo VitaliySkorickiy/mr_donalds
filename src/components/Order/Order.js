@@ -50,10 +50,12 @@ const EmptyList = styled.p`
 
 export const Order = ({ orders }) => {
 
-
   const total = orders.reduce((res, order) =>
-    totalPriceItems(order) + res
-    , 0)
+    totalPriceItems(order) + res, 0)
+
+  const totalCount = orders.reduce((res, order) =>
+    order.count + res, 0)
+
 
   return (
     <OrderStyled>
@@ -62,14 +64,17 @@ export const Order = ({ orders }) => {
 
         {orders.length ?
           <OrderList>
-            {orders.map(order => <OrderListItem key={order.id} order={order} />)}
+            {orders.map(order =>
+              <OrderListItem key={order.id} order={order}
+              />
+            )}
           </OrderList> :
           <EmptyList> Список заказов пуст</EmptyList>}
 
       </OrderContent>
       <Total>
         <span>Итого</span>
-        <span>5</span>
+        <span>{totalCount}</span>
         <TotalPrice>{currency(total)} </TotalPrice>
       </Total>
       <ButtonCheckout>Оформить</ButtonCheckout>

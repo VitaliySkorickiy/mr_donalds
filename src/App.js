@@ -15,8 +15,7 @@ function App() {
   const openItem = useOpenItem(null);
   const orders = useOrders(null);
 
-  console.log(openItem);
-  console.log(orders);
+
 
   return (
     <>

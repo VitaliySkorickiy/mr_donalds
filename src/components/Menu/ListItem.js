@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { currency } from '../functions/secondaryFunction';
 
 
 const List = styled.ul`
@@ -56,8 +57,7 @@ export const ListItem = ({ itemList, setOpenItem }) => (
         onClick={() => setOpenItem(item)}>
 
         <p>{item.name}</p>
-        <p>{item.price.toLocaleString('ru-RU',
-          { style: 'currency', currency: 'RUB' })}</p>
+        <p>{currency(item.price)}</p>
       </Item>
     ))}
   </List>

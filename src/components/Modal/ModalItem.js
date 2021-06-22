@@ -1,9 +1,12 @@
+import styled from 'styled-components';
+
 import { CountItem } from './CountItem';
 import { useCount } from '../Hooks/useCount';
 
 import { totalPriceItems, currency } from '../functions/secondaryFunction';
-import styled from 'styled-components';
 import { ButtonCheckout } from '../Style/ButtonCheckout';
+import { Toppings } from './Toppings';
+import { useToppings } from '../Hooks/useToppings';
 
 const Overlay = styled.div`
   position: fixed;
@@ -57,6 +60,7 @@ const TotalPriceItem = styled.div`
 export const ModalItem = ({ orders, setOrders, openItem, setOpenItem }) => {
 
   const counter = useCount();
+  const toppings = useToppings(openItem);
 
   const closeModal = (e) => {
     if (e.target.id === "overlay") {
@@ -66,7 +70,8 @@ export const ModalItem = ({ orders, setOrders, openItem, setOpenItem }) => {
 
   const order = {
     ...openItem,
-    count: counter.count
+    count: counter.count,
+    topping: toppings.toppings
   };
 
 
@@ -85,10 +90,10 @@ export const ModalItem = ({ orders, setOrders, openItem, setOpenItem }) => {
         <Content>
           <HeaderContent>
             <div>{openItem.name}</div>
-            <div>{openItem.price.toLocaleString('ru-RU',
-              { style: 'currency', currency: 'RUB' })}</div>
+            <div>{currency(openItem.price)}</div>
           </HeaderContent>
           <CountItem {...counter} />
+          {openItem.toppings && <Toppings {...toppings} />}
           <TotalPriceItem>
             <span>Цена:</span>
             <span>{currency(totalPriceItems(order))}</span>

@@ -47,7 +47,7 @@ const dbMenu = {
 			name: 'Coka',
 			img: '/menu/soda.png',
 			id: 1,
-			price: 50,
+			price: 50.00,
 			choices: ['Coca-cola', 'Fanta', 'Mirinda', 'Sprite'],
 		},
 		{
