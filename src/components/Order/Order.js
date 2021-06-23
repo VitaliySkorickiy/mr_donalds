@@ -48,13 +48,21 @@ const EmptyList = styled.p`
     text-align: center;
 `;
 
-export const Order = ({ orders }) => {
+
+
+
+export const Order = ({ orders, setOrders }) => {
 
   const total = orders.reduce((res, order) =>
     totalPriceItems(order) + res, 0)
 
   const totalCount = orders.reduce((res, order) =>
     order.count + res, 0)
+
+
+  const deletItem = (id) => {
+    return setOrders(orders.filter(order => order.id !== id))
+  }
 
 
   return (
@@ -64,8 +72,11 @@ export const Order = ({ orders }) => {
 
         {orders.length ?
           <OrderList>
-            {orders.map(order =>
-              <OrderListItem key={order.id} order={order}
+            {orders.map((order, index) =>
+              <OrderListItem
+                key={index}
+                order={order}
+                deletItem={deletItem}
               />
             )}
           </OrderList> :
