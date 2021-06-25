@@ -51,7 +51,7 @@ const EmptyList = styled.p`
 
 
 
-export const Order = ({ orders, setOrders }) => {
+export const Order = ({ orders, setOrders, setOpenItem }) => {
 
   const total = orders.reduce((res, order) =>
     totalPriceItems(order) + res, 0)
@@ -60,8 +60,9 @@ export const Order = ({ orders, setOrders }) => {
     order.count + res, 0)
 
 
-  const deletItem = (id) => {
-    return setOrders(orders.filter(order => order.id !== id))
+  const deletItem = (index) => {
+    const newOrder = orders.filter((item, i) => index !== i)
+    return setOrders(newOrder)
   }
 
 
@@ -77,6 +78,8 @@ export const Order = ({ orders, setOrders }) => {
                 key={index}
                 order={order}
                 deletItem={deletItem}
+                index={index}
+                setOpenItem={setOpenItem}
               />
             )}
           </OrderList> :
