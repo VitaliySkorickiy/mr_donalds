@@ -51,7 +51,9 @@ const EmptyList = styled.p`
 
 
 
-export const Order = ({ orders, setOrders, setOpenItem }) => {
+export const Order = ({ orders, setOrders, setOpenItem, authentication, logIn }) => {
+
+  console.log(orders);
 
   const total = orders.reduce((res, order) =>
     totalPriceItems(order) + res, 0)
@@ -65,6 +67,10 @@ export const Order = ({ orders, setOrders, setOpenItem }) => {
     return setOrders(newOrder)
   }
 
+  const formalize = () => {
+
+    return authentication ? null : logIn;
+  }
 
   return (
     <OrderStyled>
@@ -91,7 +97,7 @@ export const Order = ({ orders, setOrders, setOpenItem }) => {
         <span>{totalCount}</span>
         <TotalPrice>{currency(total)} </TotalPrice>
       </Total>
-      <ButtonCheckout>Оформить</ButtonCheckout>
+      <ButtonCheckout onClick={formalize()}>Оформить</ButtonCheckout>
     </OrderStyled>
   )
 }
