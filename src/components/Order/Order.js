@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ButtonCheckout } from '../Style/ButtonCheckout';
 import { OrderListItem } from './OrderListItem';
-import { totalPriceItems, currency } from '../functions/secondaryFunction';
+import { totalPriceItems, currency, projection } from '../functions/secondaryFunction';
 
 const OrderStyled = styled.section`
 display: flex;
@@ -48,12 +48,29 @@ const EmptyList = styled.p`
     text-align: center;
 `;
 
+const rulesData = {
+  name: ['name'],
+  price: ['price'],
+  count: ['count'],
+  topping: ['topping', arr => arr.filter(obj => obj.checked).map(obj => obj.name),
+    arr => arr.length ? arr : 'no topping'],
+  choice: ['choice', item => item ? item : 'no choices'],
+}
 
 
+export const Order = ({ orders, setOrders, setOpenItem, authentication, logIn, firebaseDatabase }) => {
 
-export const Order = ({ orders, setOrders, setOpenItem, authentication, logIn }) => {
+  const dataBase = firebaseDatabase();
 
-  console.log(orders);
+  const sendOrder = () => {
+    const newOrder = orders.map(projection(rulesData));
+    dataBase.ref('orders').push().set({
+      nameClient: authentication.displayName,
+      email: authentication.email,
+      order: newOrder
+    });
+    setOrders([])
+  }
 
   const total = orders.reduce((res, order) =>
     totalPriceItems(order) + res, 0)
@@ -62,15 +79,10 @@ export const Order = ({ orders, setOrders, setOpenItem, authentication, logIn })
     order.count + res, 0)
 
 
-  const deletItem = (index) => {
-    const newOrder = orders.filter((item, i) => index !== i)
-    return setOrders(newOrder)
-  }
-
-  const formalize = () => {
-
-    return authentication ? null : logIn;
-  }
+  const deletItem = index => {
+    const newOrder = orders.filter((item, i) => index !== i);
+    setOrders(newOrder)
+  };
 
   return (
     <OrderStyled>
@@ -97,7 +109,14 @@ export const Order = ({ orders, setOrders, setOpenItem, authentication, logIn })
         <span>{totalCount}</span>
         <TotalPrice>{currency(total)} </TotalPrice>
       </Total>
-      <ButtonCheckout onClick={formalize()}>Оформить</ButtonCheckout>
+      <ButtonCheckout onClick={() => {
+        if (authentication) {
+          sendOrder()
+        } else {
+          logIn()
+        }
+      }}
+      >Оформить</ButtonCheckout>
     </OrderStyled>
   )
 }
