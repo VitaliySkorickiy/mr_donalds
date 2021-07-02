@@ -1,7 +1,7 @@
 const dbMenu = {
 	burger: [
 		{
-			name: 'JS Burger',
+			name: 'JSsss Burger',
 			img: '/menu/js-burger.png',
 			id: 1,
 			price: 250,

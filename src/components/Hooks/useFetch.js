@@ -11,7 +11,7 @@ export const useFetch = () => {
     (async () => {
       try {
         // const json = await fetch('DB.json');
-        const json = await fetch('DB.json');
+        const json = await fetch('https://zarias2020.github.io/mr_donalds/DB.json');
         const res = await json.json();
         setResponse(res)
       } catch (err) {
