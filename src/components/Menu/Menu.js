@@ -1,7 +1,10 @@
+
+
 import styled from 'styled-components';
 import { ListItem } from './ListItem';
 import { Banner } from './Banner';
 import { useFetch } from '../Hooks/useFetch';
+
 
 const MenuStyled = styled.main`
   background-color: #ccc;
@@ -21,13 +24,12 @@ const Loading = styled.div`
   background-color:red;
 `
 
-export const Menu = ({ setOpenItem }) => {
+export const Menu = () => {
+
 
   const res = useFetch();
 
   const dbMenu = res.response;
-
-  console.log(useFetch());
 
   return (
     <MenuStyled>
@@ -39,14 +41,14 @@ export const Menu = ({ setOpenItem }) => {
             <h2>Бургеры</h2>
             <ListItem
               itemList={dbMenu.burger}
-              setOpenItem={setOpenItem} />
+            />
           </SectionMenu>
 
           <SectionMenu>
             <h2>Закуски / Напитки</h2>
             <ListItem
               itemList={dbMenu.other}
-              setOpenItem={setOpenItem} />
+            />
           </SectionMenu>
         </>
         : res.error ?

@@ -1,3 +1,7 @@
+import { useContext } from 'react';
+import { Context } from '../functions/context';
+
+
 import styled from 'styled-components';
 import { currency } from '../functions/secondaryFunction';
 
@@ -48,17 +52,22 @@ const Item = styled.li`
 /*   карточка товара   */
 
 
-export const ListItem = ({ itemList, setOpenItem }) => (
-  <List>
-    {itemList.map(item => (
-      <Item
-        key={item.id}
-        img={item.img}
-        onClick={() => setOpenItem(item)}>
+export const ListItem = ({ itemList }) => {
 
-        <p>{item.name}</p>
-        <p>{currency(item.price)}</p>
-      </Item>
-    ))}
-  </List>
-);
+  const { openItem: { setOpenItem } } = useContext(Context);
+
+  return (
+    <List>
+      {itemList.map(item => (
+        <Item
+          key={item.id}
+          img={item.img}
+          onClick={() => setOpenItem(item)}>
+
+          <p>{item.name}</p>
+          <p>{currency(item.price)}</p>
+        </Item>
+      ))}
+    </List>
+  )
+};
