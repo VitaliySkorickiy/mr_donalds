@@ -1,7 +1,8 @@
 {
   "burger": [{
     "name": "JSoooo Burger",
-    "img": "/menu/js-burger.png",
+    // "img": "/menu/js-burger.png",
+    "img": "../src/image/js-burger.png",
     "id": 1,
     "price": 250,
     "toppings": ["Бекон", "Кетчуп", "Сыр Чеддер", "Красный лук", "Огурцы", "Помидор", "Халапеньо"]
