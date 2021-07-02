@@ -1,7 +1,7 @@
 {
   "burger": [{
     "name": "JSssssssssss Burger",
-    "img": "../src/image/js-burger.png",
+    "img": "/menu/js-burger.png",
     "id": 1,
     "price": 250,
     "toppings": ["Бекон", "Кетчуп", "Сыр Чеддер", "Красный лук", "Огурцы", "Помидор", "Халапеньо"]
@@ -14,7 +14,7 @@
     "toppings": ["Бекон", "Красный лук", "Свекла", "Кимчи", "Халапеньо"]
   }, {
     "name": "Freckles Burger",
-    "img": "/menu/freckles-burger.png",
+    "img": "freckles-burger.png",
     "id": 3,
     "price": 350,
     "toppings": ["Ананас", "Майонец", "Кетчуп", "Кетчунез", "Оливки", "Картофель фри", "Морковь"]
