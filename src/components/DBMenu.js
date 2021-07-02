@@ -8,7 +8,7 @@ const dbMenu = {
 			toppings: ['Бекон', 'Кетчуп', 'Сыр Чеддер', 'Огурцы', 'Помидор', 'Халапеньо'],
 		},
 		{
-			name: 'Booooooooooorsh Burger',
+			name: 'Borsh Burger',
 			img: '/menu/borsh-burger.png',
 			id: 2,
 			price: 499.9,
