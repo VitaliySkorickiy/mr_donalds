@@ -6,8 +6,9 @@
     "price": 250,
     "toppings": ["Бекон", "Кетчуп", "Сыр Чеддер", "Красный лук", "Огурцы", "Помидор", "Халапеньо"]
   }, {
-    "name": "Borsh Burger",
-    "img": "/menu/borsh-burger.png",
+    "name": "Booooorsh Burger",
+    // "img": "/menu/borsh-burger.png",
+    "img": "./menu/borsh-burger.png",
     "id": 2,
     "price": 499.9,
     "toppings": ["Бекон", "Красный лук", "Свекла", "Кимчи", "Халапеньо"]
