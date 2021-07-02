@@ -10,6 +10,7 @@ export const useFetch = () => {
 
     (async () => {
       try {
+        // const json = await fetch('DB.json');
         const json = await fetch('DB.json');
         const res = await json.json();
         setResponse(res)

@@ -31,6 +31,8 @@ export const Menu = () => {
 
   const dbMenu = res.response;
 
+  console.log(dbMenu);
+
   return (
     <MenuStyled>
 
