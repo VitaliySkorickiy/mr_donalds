@@ -1,7 +1,6 @@
 {
   "burger": [{
-    "name": "JSoooo Burger",
-    // "img": "/menu/js-burger.png",
+    "name": "JSssssssssss Burger",
     "img": "../src/image/js-burger.png",
     "id": 1,
     "price": 250,
