@@ -1,15 +1,14 @@
 const dbMenu = {
 	burger: [
 		{
-			name: 'JSsss Burger',
-			// img: '/menu/js-burger.png',
+			name: 'JS Burger',
 			img: '../image/js-burger.png',
 			id: 1,
 			price: 250,
 			toppings: ['Бекон', 'Кетчуп', 'Сыр Чеддер', 'Огурцы', 'Помидор', 'Халапеньо'],
 		},
 		{
-			name: 'Borsh Burger',
+			name: 'Booooooooooorsh Burger',
 			img: '/menu/borsh-burger.png',
 			id: 2,
 			price: 499.9,
